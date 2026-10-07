@@ -1,0 +1,21 @@
+profile_id,name,email,gender,age,bio,profession,city_id,interest_names,is_active
+1,Aarav Mehta,aarav@example.com,MALE,27,Weekend traveller and coffee lover,Software Developer,1,Travel|Coding|Coffee,TRUE
+2,Ananya Rao,ananya@example.com,FEMALE,25,Music sunsets and good conversations,UI Designer,1,Music|Art|Travel,TRUE
+3,Rohan Das,rohan@example.com,MALE,29,Cricket fan who enjoys cooking,Data Analyst,8,Cricket|Cooking|Movies,TRUE
+4,Ishita Sen,ishita@example.com,FEMALE,27,Reader photographer and pet parent,Content Writer,8,Reading|Photography|Pets,TRUE
+5,Vikram Nair,vikram@example.com,MALE,31,Fitness enthusiast and beach lover,Product Manager,10,Fitness|Travel|Coffee,TRUE
+6,Meera Menon,meera@example.com,FEMALE,28,Dancer who loves movies and food,HR Manager,10,Dancing|Movies|Cooking,TRUE
+7,Aditya Sharma,aditya@example.com,MALE,26,Gamer coder and weekend hiker,Backend Developer,7,Gaming|Coding|Hiking,TRUE
+8,Kavya Gupta,kavya@example.com,FEMALE,24,Artist and passionate photographer,Graphic Designer,7,Art|Photography|Travel,TRUE
+9,Rahul Patil,rahul@example.com,MALE,30,Exploring cafes and new destinations,Sales Executive,4,Travel|Coffee|Fitness,TRUE
+10,Sneha Joshi,sneha@example.com,FEMALE,28,Book lover and amateur chef,Teacher,4,Reading|Cooking|Music,TRUE
+11,Arjun Reddy,arjun@example.com,MALE,29,Cricket coding and long drives,DevOps Engineer,3,Cricket|Coding|Travel,TRUE
+12,Priya Nair,priya@example.com,FEMALE,26,Classical dancer and animal lover,Doctor,3,Dancing|Pets|Music,TRUE
+13,Siddharth Das,siddharth@example.com,MALE,32,Photographer looking for adventures,Architect,6,Photography|Travel|Hiking,TRUE
+14,Riya Parida,riya@example.com,FEMALE,27,Enjoys art books and meaningful chats,Business Analyst,6,Art|Reading|Coffee,TRUE
+15,Karan Singh,karan@example.com,MALE,28,Gym regular and movie enthusiast,Marketing Manager,9,Fitness|Movies|Music,TRUE
+16,Neha Kapoor,neha@example.com,FEMALE,25,Foodie traveller and casual gamer,Chef,9,Cooking|Travel|Gaming,TRUE
+17,Abhishek Roy,abhishek@example.com,MALE,30,Music lover and pet-friendly human,Financial Analyst,2,Music|Pets|Coffee,TRUE
+18,Pooja Shah,pooja@example.com,FEMALE,29,Loves hiking photography and fitness,Fitness Trainer,2,Hiking|Photography|Fitness,TRUE
+19,Nikhil Kumar,nikhil@example.com,MALE,27,Developer who cooks on weekends,Mobile Developer,5,Coding|Cooking|Gaming,TRUE
+20,Divya Iyer,divya@example.com,FEMALE,26,Reader dancer and cinema lover,Journalist,5,Reading|Dancing|Movies,TRUE

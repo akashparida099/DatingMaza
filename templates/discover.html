@@ -1,0 +1,387 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container py-5">
+
+    <!-- PAGE HEADER -->
+    <div class="text-center mb-5">
+        <span class="badge badge-danger px-3 py-2 mb-3">
+            💕 HeartSync Discover
+        </span>
+
+        <h2 class="font-weight-bold">
+            Find Someone Interesting
+        </h2>
+
+        <p class="text-muted">
+            Discover people, find common interests and make new connections.
+        </p>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- DISCOVER / PASSED TABS -->
+    <!-- ========================= -->
+
+    <ul class="nav nav-pills justify-content-center mb-5"
+        id="discoverTabs"
+        role="tablist">
+
+        <li class="nav-item mr-2">
+            <a class="nav-link active px-4"
+               id="discover-tab"
+               data-toggle="pill"
+               href="#discover"
+               role="tab">
+
+                💕 Discover
+
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link px-4"
+               id="passed-tab"
+               data-toggle="pill"
+               href="#passed"
+               role="tab">
+
+                ↻ Passed Profiles
+
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="tab-content">
+
+
+        <!-- ================================= -->
+        <!-- DISCOVER PROFILES -->
+        <!-- ================================= -->
+
+        <div class="tab-pane fade show active"
+             id="discover"
+             role="tabpanel">
+
+            <div class="row">
+
+                {% for user in AUPO %}
+
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="card discover-card border-0 shadow-sm h-100">
+
+                        <!-- PROFILE IMAGE -->
+                        <div class="position-relative">
+
+                            {% if user.profile_picture %}
+
+                                <img src="{{ user.profile_picture.url }}"
+                                     class="discover-img"
+                                     alt="{{ user.firstname }}">
+
+                            {% elif user.gender == 'FEMALE' %}
+
+                                <div class="discover-img bg-light
+                                            d-flex align-items-center
+                                            justify-content-center">
+
+                                    <span style="font-size:90px;">
+                                        👩
+                                    </span>
+
+                                </div>
+
+                            {% else %}
+
+                                <div class="discover-img bg-light
+                                            d-flex align-items-center
+                                            justify-content-center">
+
+                                    <span style="font-size:90px;">
+                                        👤
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <!-- AGE BADGE -->
+                            <span class="badge badge-light position-absolute
+                                         px-3 py-2 shadow-sm"
+                                  style="top:15px; left:15px;">
+
+                                {{ user.age }} yrs
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- PROFILE BODY -->
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between
+                                        align-items-start">
+
+                                <div>
+
+                                    <h4 class="font-weight-bold mb-1">
+
+                                        {{ user.firstname }}
+                                        {{ user.lastname }}
+
+                                    </h4>
+
+                                    <p class="text-muted mb-2">
+
+                                        📍 {{ user.city }}
+
+                                    </p>
+
+                                </div>
+
+                                <span title="Profile">
+                                    💕
+                                </span>
+
+                            </div>
+
+
+                            <!-- PROFESSION -->
+
+                            <p class="mb-2">
+
+                                💼 {{ user.profession }}
+
+                            </p>
+
+
+                            <!-- BIO -->
+
+                            <p class="text-muted small">
+
+                                {{ user.bio|truncatechars:100 }}
+
+                            </p>
+
+
+                            <!-- INTERESTS -->
+
+                            <div class="mb-4">
+
+                                {% for interest in user.interests.all %}
+
+                                    <span class="badge badge-light border
+                                                 px-2 py-2 mr-1 mb-1">
+
+                                        {{ interest.interest_name }}
+
+                                    </span>
+
+                                {% empty %}
+
+                                    <small class="text-muted">
+                                        No interests added
+                                    </small>
+
+                                {% endfor %}
+
+                            </div>
+
+
+                            <!-- VIEW PROFILE -->
+
+                            <button type="button"
+                                    class="btn btn-outline-secondary
+                                           btn-block mb-3">
+
+                                👤 View Profile
+
+                            </button>
+
+
+                            <!-- PASS / LIKE -->
+
+                            <div class="row">
+
+                                <div class="col-5">
+
+                                    <button type="button"
+                                            class="btn btn-outline-secondary
+                                                   btn-block pass-btn">
+
+                                        ✕ Pass
+
+                                    </button>
+
+                                </div>
+
+
+                                <div class="col-7">
+
+                                    <form method="POST"
+                                          action="{% url 'like' user.profile_id %}">
+
+                                        {% csrf_token %}
+
+                                        <button type="submit"
+                                                class="btn btn-danger
+                                                       btn-block">
+
+                                            ❤️ Like
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {% empty %}
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="col-12">
+
+                    <div class="text-center py-5">
+
+                        <div style="font-size:70px;">
+                            💕
+                        </div>
+
+                        <h4 class="font-weight-bold mt-3">
+                            You've explored everyone!
+                        </h4>
+
+                        <p class="text-muted">
+                            Check your passed profiles or come back later.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- PASSED PROFILES -->
+        <!-- ================================= -->
+
+        <div class="tab-pane fade"
+             id="passed"
+             role="tabpanel">
+
+
+            <div class="d-flex justify-content-between
+                        align-items-center mb-4">
+
+                <div>
+
+                    <h4 class="font-weight-bold mb-1">
+                        ↻ Passed Profiles
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Changed your mind? Give someone another chance.
+                    </p>
+
+                </div>
+
+
+                <span class="badge badge-secondary p-2">
+
+                    {{ passed_count }} Passed
+
+                </span>
+            </div>
+            <div class="row">
+                {% for user in PPU %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <!-- IMAGE -->
+                        <div class="position-relative">
+                            {% if user.profile_picture %}
+                                <img src="{{ user.profile_picture.url }}"
+                                     class="discover-img"
+                                     alt="{{ user.firstname }}">
+                            {% elif user.gender == 'FEMALE' %}
+                                <div class="discover-img bg-light
+                                            d-flex align-items-center
+                                            justify-content-center">
+
+                                    <span style="font-size:90px;">
+                                        👩
+                                    </span>
+                                </div>
+                            {% else %}
+                                <div class="discover-img bg-light
+                                            d-flex align-items-center
+                                            justify-content-center">
+                                    <span style="font-size:90px;">
+                                        👤
+                                    </span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="font-weight-bold mb-1">
+                                {{ user.firstname }},
+                                {{ user.age }}
+                            </h5>
+                            <p class="text-muted">
+
+                                📍 {{ user.city }}
+                            </p>
+                            <p>
+                                💼 {{ user.profession }}
+                            </p>
+                            <!-- RESTORE -->
+                            <button type="button"
+                                    class="btn btn-outline-danger btn-block">
+                                ↻ Show Again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <div style="font-size:60px;">
+                            ✨
+                        </div>
+                        <h5 class="font-weight-bold mt-3">
+                            No passed profiles
+                        </h5>
+                        <p class="text-muted">
+                            Profiles you pass will appear here.
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

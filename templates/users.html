@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>All User Counts</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>gender</th>
+                    <th>age</th>
+                    <th>abot</th>
+                    <th>profession</th>
+                    <th>city</th>
+                    <th>interest</th>
+                    <th>Joining Date</th>
+                    <th>Active or not</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in AUO %}
+                <tr>
+                    <td>{{ user.profile_id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.username.email }}</td>
+                    <td>{{ user.gender }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.bio }}</td>
+                    <td>{{ user.profession }}</td>
+                    <td>{{ user.city }}</td>
+                    <td>
+                        {% for interest in user.interests.all %}
+                        {{ interest.interest_name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ user.joined_at }}</td>
+                    <td>{{ user.is_active }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+</body>
+</html>

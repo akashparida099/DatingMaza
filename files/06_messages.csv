@@ -1,0 +1,21 @@
+id,match_id,sender_id,message,is_read
+1,1,1,Hey Ananya your travel photos look amazing,TRUE
+2,1,2,Thank you Aarav coffee sometime,TRUE
+3,2,3,Hi Ishita which book are you reading,TRUE
+4,2,4,I just started a mystery novel,TRUE
+5,3,5,Would you recommend a good beach in Kochi,TRUE
+6,3,6,Fort Kochi is beautiful at sunset,FALSE
+7,4,7,Your artwork is really impressive,TRUE
+8,4,8,Thanks your hiking pictures are great too,FALSE
+9,5,9,Found any good cafes recently,TRUE
+10,5,10,Yes I know a quiet one in Koregaon Park,FALSE
+11,6,11,Are you watching the cricket tonight,TRUE
+12,6,12,Definitely I never miss a good match,FALSE
+13,7,13,Your reading list looks interesting,TRUE
+14,7,14,I can recommend a few books,FALSE
+15,8,15,What kind of games do you enjoy,TRUE
+16,8,16,Mostly adventure and puzzle games,FALSE
+17,9,17,That hiking trail in your photo looks great,TRUE
+18,9,18,It was challenging but completely worth it,FALSE
+19,10,19,Which movie did you enjoy recently,TRUE
+20,10,20,I loved the latest mystery thriller,FALSE

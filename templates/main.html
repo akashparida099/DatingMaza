@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block title %}<title>HeartSync | Create Account</title>{% endblock %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/HeartSync.css' %}">
+</head>
+
+<body class="bg-light">
+<!-- HeartSync Navbar -->
+
+{% if not user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand font-weight-bold" href="#">
+            💗 HeartSync
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#heartSyncNavbar"
+                aria-controls="heartSyncNavbar"
+                aria-expanded="false">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu -->
+        <div class="collapse navbar-collapse" id="heartSyncNavbar">
+
+            <ul class="navbar-nav ml-auto align-items-lg-center">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Discover
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        About
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Safety
+                    </a>
+                </li>
+
+                <li class="nav-item ml-lg-3">
+                    <a class="btn btn-outline-light px-4" href="{% url 'login' %}">
+                        Login
+                    </a>
+                </li>
+
+                <li class="nav-item ml-lg-2">
+                    <a class="btn btn-light text-danger font-weight-bold px-4" href="{% url 'create_user' %}">
+                        💗 Join Now
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+{% else %}
+<!-- HeartSync Navbar - After Login -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand font-weight-bold" href="#">
+            💗 HeartSync
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#loggedInNavbar"
+                aria-controls="loggedInNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <!-- Navbar Menu -->
+        <div class="collapse navbar-collapse" id="loggedInNavbar">
+
+            <ul class="navbar-nav ml-auto align-items-lg-center">
+
+                <!-- Home -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        🏠 Home
+                    </a>
+                </li>
+
+                <!-- Discover -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'discover' %}">
+                        🔍 Discover
+                    </a>
+                </li>
+
+                <!-- Matches -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'matches' %}">
+                        💗 Matches
+                    </a>
+                </li>
+
+                <!-- Messages -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        💬 Messages
+
+                        <span class="badge badge-light text-danger">
+                            3
+                        </span>
+                    </a>
+                </li>
+
+                <!-- Notifications -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        🔔
+                    </a>
+                </li>
+
+
+                <!-- Profile Dropdown -->
+                <li class="nav-item dropdown ml-lg-3">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       id="profileDropdown"
+                       role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+
+                        👤 My Profile
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right shadow"
+                         aria-labelledby="profileDropdown">
+
+                        <a class="dropdown-item" href="#">
+                            👤 View Profile
+                        </a>
+
+                        <a class="dropdown-item" href="#">
+                            ✏️ Edit Profile
+                        </a>
+
+                        <a class="dropdown-item" href="#">
+                            ⚙️ Settings
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item text-danger" href="{% url 'user_logout' %}">
+                            🚪 Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endif %}
+{% block body_block %}
+
+{% endblock %}
+<script src="{% static 'js/jquery-3.5.1.slim.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'js/HeartSync.js' %}"></script>
+</body>

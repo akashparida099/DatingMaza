@@ -1,0 +1,338 @@
+{% extends 'main.html' %}
+{% block title %}
+<title>HeartSync | Create Account</title>
+{% endblock %}
+{% block body_block %}
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9 col-md-11">
+
+            <div class="card border-0 shadow">
+
+                <!-- HEADER -->
+                <div class="card-header bg-danger text-white text-center py-4">
+
+                    <h2 class="font-weight-bold mb-2">
+                        💗 Create Your Profile
+                    </h2>
+
+                    <p class="mb-0">
+                        Join HeartSync and find meaningful connections
+                    </p>
+
+                </div>
+
+
+                <div class="card-body p-4 p-md-5">
+
+                    <form method="POST"
+                          enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+
+                        <!-- ACCOUNT DETAILS -->
+
+                        <h4 class="text-danger font-weight-bold">
+                            🔐 Account Details
+                        </h4>
+
+                        <p class="text-muted">
+                            Create your login information
+                        </p>
+
+                        <hr>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    Username
+                                </label>
+
+                                {{ UMF.username }}
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    Email Address
+                                </label>
+
+                                {{ UMF.email }}
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    Password
+                                </label>
+
+                                {{ UMF.password }}
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    📷 Profile Picture
+                                </label>
+
+                                {{ UPMF.profile_picture }}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PERSONAL DETAILS -->
+
+                        <h4 class="text-danger font-weight-bold mt-5">
+                            👤 Personal Details
+                        </h4>
+
+                        <p class="text-muted">
+                            Tell us a little about yourself
+                        </p>
+
+                        <hr>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    First Name
+                                </label>
+
+                                {{ UPMF.firstname }}
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    Last Name
+                                </label>
+
+                                {{ UPMF.lastname }}
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    Gender
+                                </label>
+
+                                {{ UPMF.gender }}
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                <label class="font-weight-bold">
+                                    Age
+                                </label>
+
+                                {{ UPMF.age }}
+
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+
+                                <label class="font-weight-bold">
+                                    💼 Profession
+                                </label>
+
+                                {{ UPMF.profession }}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BIO -->
+
+                        <div class="form-group">
+
+                            <label class="font-weight-bold">
+                                ✍️ About Me
+                            </label>
+
+                            {{ UPMF.bio }}
+
+                            <small class="form-text text-muted">
+                                Tell people something interesting about yourself.
+                            </small>
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <h4 class="text-danger font-weight-bold mt-5">
+                            📍 Your Location
+                        </h4>
+
+                        <p class="text-muted">
+                            Select your current city
+                        </p>
+
+                        <hr>
+
+
+                        <div class="card bg-light border-0">
+
+                            <div class="card-body">
+
+                                <div class="form-group mb-0">
+
+                                    <label class="font-weight-bold">
+                                        🏙️ City
+                                    </label>
+
+                                    {{ UPMF.city }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- INTERESTS -->
+
+                        <h4 class="text-danger font-weight-bold mt-5">
+                            💕 Who Are You Interested In?
+                        </h4>
+
+                        <p class="text-muted">
+                            Select one or more options
+                        </p>
+
+                        <hr>
+
+
+                        <div class="row">
+
+                            {% for choice in UPMF.interests %}
+
+                            <div class="col-md-4 col-sm-6 mb-3">
+
+                                <div class="card h-100">
+
+                                    <div class="card-body py-3">
+
+                                        <div class="custom-control custom-checkbox">
+
+                                            {{ choice.tag }}
+
+                                            <label class="ml-2 mb-0 font-weight-bold">
+                                                ❤️ {{ choice.choice_label }}
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="alert alert-light border mt-2">
+
+                            💡 You can select multiple preferences.
+
+                        </div>
+
+
+                        <!-- TERMS -->
+
+                        <div class="custom-control custom-checkbox mt-5 mb-4">
+
+                            <input type="checkbox"
+                                   class="custom-control-input"
+                                   id="terms"
+                                   required>
+
+                            <label class="custom-control-label"
+                                   for="terms">
+
+                                I agree to the
+
+                                <a href="#"
+                                   class="text-danger font-weight-bold">
+
+                                    Terms & Conditions
+
+                                </a>
+
+                                and
+
+                                <a href="#"
+                                   class="text-danger font-weight-bold">
+
+                                    Privacy Policy
+
+                                </a>
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+
+                        <button type="submit"
+                                class="btn btn-danger btn-lg btn-block font-weight-bold">
+
+                            💗 Create My Account
+
+                        </button>
+
+
+                        <p class="text-center text-muted mt-3">
+
+                            🔒 Your information stays private and secure
+
+                        </p>
+
+                    </form>
+
+                </div>
+
+
+                <!-- FOOTER -->
+
+                <div class="card-footer bg-white text-center py-4">
+                    Already have an account?
+                    <a href="#"
+                       class="text-danger font-weight-bold">
+                        Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

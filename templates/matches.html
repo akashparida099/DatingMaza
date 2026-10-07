@@ -1,0 +1,329 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container py-5">
+
+    <!-- PAGE HEADING -->
+    <div class="text-center mb-5">
+        <h2 class="font-weight-bold">💕 Your Connections</h2>
+        <p class="text-muted">
+            Manage the people you like and the people who like you.
+        </p>
+    </div>
+
+
+    <!-- ===================== -->
+    <!-- YOUR MATCHES -->
+    <!-- ===================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="font-weight-bold mb-1">💕 Your Matches</h4>
+            <p class="text-muted mb-0">
+                You both liked each other
+            </p>
+        </div>
+
+        <span class="badge badge-danger p-2">
+            {{ match_count }} Matches
+        </span>
+    </div>
+
+    <div class="row">
+
+        {% for user in matched_profiles %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <!-- PROFILE IMAGE -->
+                    <div class="mb-3">
+
+                        {% if user.profile_picture %}
+
+                            <img src="{{ user.profile_picture.url }}"
+                                 class="profile-img"
+                                 alt="{{ user.firstname }}">
+
+                        {% elif user.gender == 'FEMALE' %}
+
+                            <div class="profile-img bg-light d-flex
+                                        align-items-center justify-content-center">
+                                <span style="font-size:80px;">👩</span>
+                            </div>
+
+                        {% else %}
+
+                            <div class="profile-img bg-light d-flex
+                                        align-items-center justify-content-center">
+                                <span style="font-size:80px;">👤</span>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- PROFILE DETAILS -->
+                    <h5 class="font-weight-bold mb-1">
+                        {{ user.firstname }}, {{ user.age }}
+                    </h5>
+
+                    <p class="text-muted mb-2">
+                        📍 {{ user.city }}
+                    </p>
+
+                    <p class="mb-3">
+                        {{ user.profession }}
+                    </p>
+
+                    <span class="badge badge-danger p-2 mb-3">
+                        💕 It's a Match!
+                    </span>
+
+                    <div class="row">
+
+                        <div class="col-6">
+                            <button type="button"
+                                    class="btn btn-outline-secondary btn-block">
+                                👤 Profile
+                            </button>
+                        </div>
+
+                        <div class="col-6">
+                            <button type="button"
+                                    class="btn btn-danger btn-block">
+                                💬 Message
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+            <p class="text-muted text-center">
+                No matches yet 💕
+            </p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <hr class="my-5">
+
+
+    <!-- ===================== -->
+    <!-- LIKES I SENT -->
+    <!-- ===================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+            <h4 class="font-weight-bold mb-1">❤️ Likes I Sent</h4>
+            <p class="text-muted mb-0">
+                People you're interested in
+            </p>
+        </div>
+
+        <span class="badge badge-danger p-2">
+            {{ sent_count }} Likes
+        </span>
+
+    </div>
+
+    <div class="row">
+
+        {% for user in sent_likes %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <!-- RECEIVER PROFILE IMAGE -->
+                    <div class="mb-3">
+
+                        {% if user.receiver.profile_picture %}
+
+                            <img src="{{ user.receiver.profile_picture.url }}"
+                                 class="profile-img"
+                                 alt="{{ user.receiver.firstname }}">
+
+                        {% elif user.receiver.gender == 'FEMALE' %}
+
+                            <div class="profile-img bg-light d-flex
+                                        align-items-center justify-content-center">
+                                <span style="font-size:80px;">👩</span>
+                            </div>
+
+                        {% else %}
+
+                            <div class="profile-img bg-light d-flex
+                                        align-items-center justify-content-center">
+                                <span style="font-size:80px;">👤</span>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <h5 class="font-weight-bold mb-1">
+                        {{ user.receiver.firstname }},
+                        {{ user.receiver.age }}
+                    </h5>
+
+                    <p class="text-muted mb-2">
+                        📍 {{ user.receiver.city }}
+                    </p>
+
+                    <p class="mb-3">
+                        {{ user.receiver.profession }}
+                    </p>
+
+                    <button type="button"
+                            class="btn btn-outline-danger btn-block">
+                        👤 View Profile
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+            <p class="text-muted text-center">
+                You haven't liked anyone yet.
+            </p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <hr class="my-5">
+
+
+    <!-- ===================== -->
+    <!-- LIKES I RECEIVED -->
+    <!-- ===================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+            <h4 class="font-weight-bold mb-1">💌 Likes I Received</h4>
+            <p class="text-muted mb-0">
+                People who are interested in you
+            </p>
+        </div>
+
+        <span class="badge badge-danger p-2">
+            {{ receive_count }} Likes
+        </span>
+
+    </div>
+
+    <div class="row">
+
+        {% for user in receive_likes %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <!-- SENDER PROFILE IMAGE -->
+                    <div class="mb-3">
+
+                        {% if user.sender.profile_picture %}
+
+                            <img src="{{ user.sender.profile_picture.url }}"
+                                 class="profile-img"
+                                 alt="{{ user.sender.firstname }}">
+
+                        {% elif user.sender.gender == 'FEMALE' %}
+
+                            <div class="profile-img bg-light d-flex
+                                        align-items-center justify-content-center">
+                                <span style="font-size:80px;">👩</span>
+                            </div>
+
+                        {% else %}
+
+                            <div class="profile-img bg-light d-flex
+                                        align-items-center justify-content-center">
+                                <span style="font-size:80px;">👤</span>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <h5 class="font-weight-bold mb-1">
+                        {{ user.sender.firstname }},
+                        {{ user.sender.age }}
+                    </h5>
+
+                    <p class="text-muted mb-2">
+                        📍 {{ user.sender.city }}
+                    </p>
+
+                    <p class="mb-3">
+                        {{ user.sender.profession }}
+                    </p>
+
+                    <div class="row">
+
+                        <div class="col-5">
+                            <button type="button"
+                                    class="btn btn-outline-secondary btn-block">
+                                ✕ Pass
+                            </button>
+                        </div>
+
+                        <div class="col-7">
+
+                            <form method="POST"
+                                  action="{% url 'like' user.sender.profile_id %}">
+
+                                {% csrf_token %}
+
+                                <button type="submit"
+                                        class="btn btn-danger btn-block">
+                                    ❤️ Like Back
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+            <p class="text-muted text-center">
+                No likes received yet.
+            </p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
